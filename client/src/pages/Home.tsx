@@ -433,7 +433,10 @@ export default function Home() {
           </div>
 
           <div className="mt-16 text-center">
-            <Button className="bg-secondary text-primary font-bold hover:bg-secondary/90 text-lg px-8 h-12 rounded-full shadow-lg shadow-secondary/20">
+            <Button
+              className="bg-secondary text-primary font-bold hover:bg-secondary/90 text-lg px-8 h-12 rounded-full shadow-lg shadow-secondary/20"
+              onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}
+            >
               Quero estruturar meu financeiro
             </Button>
           </div>
