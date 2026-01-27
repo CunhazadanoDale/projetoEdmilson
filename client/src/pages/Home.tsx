@@ -9,7 +9,11 @@ import {
   PieChart,
   Target,
   TrendingUp,
-  Users
+  Users,
+  FileText,
+  Calculator,
+  Building2,
+  Headphones
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -300,7 +304,9 @@ export default function Home() {
             {/* Serviço 1 - Abertura de MEI */}
             <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
               <CardHeader>
-                <div className="text-4xl mb-4">🧾</div>
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                  <FileText className="w-6 h-6 text-primary" />
+                </div>
                 <CardTitle className="text-lg font-display font-bold text-primary">
                   Abertura de MEI
                 </CardTitle>
@@ -315,7 +321,9 @@ export default function Home() {
             {/* Serviço 2 - Emissão de Nota Fiscal */}
             <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
               <CardHeader>
-                <div className="text-4xl mb-4">🧮</div>
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                  <Calculator className="w-6 h-6 text-primary" />
+                </div>
                 <CardTitle className="text-lg font-display font-bold text-primary">
                   Emissão de Nota Fiscal
                 </CardTitle>
@@ -330,7 +338,9 @@ export default function Home() {
             {/* Serviço 3 - Precificação */}
             <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
               <CardHeader>
-                <div className="text-4xl mb-4">💰</div>
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                  <BarChart3 className="w-6 h-6 text-primary" />
+                </div>
                 <CardTitle className="text-lg font-display font-bold text-primary">
                   Precificação
                 </CardTitle>
@@ -345,7 +355,9 @@ export default function Home() {
             {/* Serviço 4 - Estruturação Financeira */}
             <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
               <CardHeader>
-                <div className="text-4xl mb-4">🏗️</div>
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                  <Building2 className="w-6 h-6 text-primary" />
+                </div>
                 <CardTitle className="text-lg font-display font-bold text-primary">
                   Estruturação Financeira
                 </CardTitle>
@@ -360,7 +372,9 @@ export default function Home() {
             {/* Serviço 5 - Consultoria Contínua */}
             <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
               <CardHeader>
-                <div className="text-4xl mb-4">📌</div>
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                  <Headphones className="w-6 h-6 text-primary" />
+                </div>
                 <CardTitle className="text-lg font-display font-bold text-primary">
                   Consultoria Contínua
                 </CardTitle>
