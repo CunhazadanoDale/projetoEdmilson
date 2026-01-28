@@ -2,6 +2,12 @@ import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
   ArrowRight,
   BarChart3,
   CheckCircle2,
@@ -95,6 +101,12 @@ export default function Home() {
       {/* Hero Section */}
       <section id="hero" className="relative pt-12 pb-20 md:pt-24 md:pb-32 overflow-hidden">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-secondary/10 via-background to-background"></div>
+        
+        {/* Floating gradient blobs */}
+        <div className="absolute top-20 right-10 w-72 h-72 bg-secondary/5 rounded-full blur-3xl animate-float -z-10"></div>
+        <div className="absolute -bottom-40 left-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float -z-10" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-secondary/5 rounded-full blur-3xl animate-float -z-10" style={{ animationDelay: '2s' }}></div>
+
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -657,6 +669,291 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Depoimentos/Social Proof Section */}
+      <section className="py-20 bg-primary text-primary-foreground relative overflow-hidden">
+        {/* Background gradient animation */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2 animate-pulse" style={{ animationDelay: '1s' }}></div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto mb-16 space-y-4"
+          >
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
+              O que meus clientes dizem
+            </h2>
+            <p className="text-primary-foreground/80 text-lg">
+              Histórias reais de transformação financeira e crescimento empresarial.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {/* Depoimento 1 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0 }}
+              viewport={{ once: true }}
+              className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/15 transition-all duration-300"
+            >
+              <div className="flex gap-1 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <span key={i} className="text-secondary text-lg">★</span>
+                ))}
+              </div>
+              <p className="text-primary-foreground/90 text-sm mb-4 leading-relaxed">
+                "Com a consultoria do Edmilson, consegui enxergar meus números de forma clara. Em 3 meses, eliminei gastos desnecessários e aumentei meu lucro em 35%. Recomendo muito!"
+              </p>
+              <div>
+                <p className="font-bold text-sm">Maria Silva</p>
+                <p className="text-primary-foreground/70 text-xs">Consultora Financeira</p>
+              </div>
+            </motion.div>
+
+            {/* Depoimento 2 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/15 transition-all duration-300"
+            >
+              <div className="flex gap-1 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <span key={i} className="text-secondary text-lg">★</span>
+                ))}
+              </div>
+              <p className="text-primary-foreground/90 text-sm mb-4 leading-relaxed">
+                "Não tinha controle sobre meu fluxo de caixa e vivia com medo de não conseguir pagar contas. Agora tenho uma visão clara de tudo e posso planejar meu crescimento com segurança."
+              </p>
+              <div>
+                <p className="font-bold text-sm">João Santos</p>
+                <p className="text-primary-foreground/70 text-xs">Prestador de Serviço</p>
+              </div>
+            </motion.div>
+
+            {/* Depoimento 3 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/15 transition-all duration-300"
+            >
+              <div className="flex gap-1 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <span key={i} className="text-secondary text-lg">★</span>
+                ))}
+              </div>
+              <p className="text-primary-foreground/90 text-sm mb-4 leading-relaxed">
+                "Além de organizar meu financeiro, o Edmilson me ajudou a estruturar meu negócio de forma profissional. Hoje tenho processos claros e consigo escalar com confiança."
+              </p>
+              <div>
+                <p className="font-bold text-sm">Ana Costa</p>
+                <p className="text-primary-foreground/70 text-xs">Proprietária de E-commerce</p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Transformação Section (Antes e Depois) */}
+      <section className="py-20 bg-white dark:bg-slate-900">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto mb-16 space-y-4"
+          >
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-primary">
+              A Transformação do Seu Negócio
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Veja como a consultoria financeira pode mudar a realidade da sua empresa.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {/* Antes */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="space-y-4"
+            >
+              <div className="inline-block px-3 py-1 rounded-full bg-red-100 text-red-700 text-sm font-medium">
+                Antes da Consultoria
+              </div>
+              <h3 className="text-2xl font-display font-bold text-primary">
+                Caos Financeiro
+              </h3>
+              <ul className="space-y-3">
+                {[
+                  "Sem controle de receitas e despesas",
+                  "Não sabe se está ganhando ou perdendo dinheiro",
+                  "Decisões baseadas em intuição",
+                  "Despesas desnecessárias não identificadas",
+                  "Precificação incorreta dos serviços",
+                  "Medo constante com a situação financeira",
+                  "Impossível planejar o crescimento"
+                ].map((item, i) => (
+                  <motion.li
+                    key={i}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: i * 0.05 }}
+                    viewport={{ once: true }}
+                    className="flex items-start gap-3 text-muted-foreground"
+                  >
+                    <span className="text-red-500 text-xl mt-1">✗</span>
+                    <span>{item}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* Depois */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="space-y-4"
+            >
+              <div className="inline-block px-3 py-1 rounded-full bg-green-100 text-green-700 text-sm font-medium">
+                Depois da Consultoria
+              </div>
+              <h3 className="text-2xl font-display font-bold text-secondary">
+                Controle Total
+              </h3>
+              <ul className="space-y-3">
+                {[
+                  "Visão clara de toda a situação financeira",
+                  "Sabe exatamente quanto ganha por mês",
+                  "Decisões baseadas em dados reais",
+                  "Elimina gastos desnecessários",
+                  "Preços calculados corretamente para lucrar",
+                  "Tranquilidade e segurança financeira",
+                  "Planejamento estratégico para crescimento"
+                ].map((item, i) => (
+                  <motion.li
+                    key={i}
+                    initial={{ opacity: 0, x: 10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: i * 0.05 }}
+                    viewport={{ once: true }}
+                    className="flex items-start gap-3 text-muted-foreground"
+                  >
+                    <span className="text-green-500 text-xl mt-1">✓</span>
+                    <span>{item}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-center mt-16"
+          >
+            <Button
+              size="lg"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 h-14 rounded-full shadow-lg shadow-primary/20"
+              onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Comece Sua Transformação Agora
+            </Button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-muted/50">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto mb-16 space-y-4"
+          >
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-primary">
+              Perguntas Frequentes
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Encontre respostas para as dúvidas mais comuns sobre consultoria financeira e como posso ajudar seu negócio.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="max-w-3xl mx-auto"
+          >
+            <Accordion type="single" collapsible className="w-full space-y-2">
+              <AccordionItem value="item-1" className="border border-border rounded-lg px-6 py-2 mb-3 bg-white dark:bg-slate-800">
+                <AccordionTrigger className="hover:text-secondary transition-colors">
+                  Quanto tempo leva para ver resultados?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  Os primeiros resultados aparecem entre 1 a 3 meses, dependendo da situação inicial da empresa. A organização financeira é progressiva, mas desde o primeiro mês você terá mais clareza sobre seus números e poderá tomar decisões mais assertivas.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-2" className="border border-border rounded-lg px-6 py-2 mb-3 bg-white dark:bg-slate-800">
+                <AccordionTrigger className="hover:text-secondary transition-colors">
+                  Como funciona o processo de consultoria?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  Começamos com um diagnóstico detalhado da sua situação financeira atual. Depois, definimos os objetivos e criamos um plano de ação personalizado. O acompanhamento é contínuo, com reuniões periódicas para revisar resultados e ajustar estratégias conforme necessário.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-3" className="border border-border rounded-lg px-6 py-2 mb-3 bg-white dark:bg-slate-800">
+                <AccordionTrigger className="hover:text-secondary transition-colors">
+                  Qual é o valor da consultoria?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  Os valores variam conforme a complexidade do seu negócio e a modalidade de serviço. Oferecemos um diagnóstico financeiro gratuito para que você entenda suas necessidades e podamos apresentar uma proposta personalizada.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-4" className="border border-border rounded-lg px-6 py-2 mb-3 bg-white dark:bg-slate-800">
+                <AccordionTrigger className="hover:text-secondary transition-colors">
+                  Preciso ser MEI ou posso ser PJ/Autônomo?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  Trabalho com MEIs, autônomos, prestadores de serviço, pequenas empresas e até microempresas. Cada segmento tem suas particularidades, e adapto a consultoria às suas necessidades específicas. O importante é que você queira organizar e crescer.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-5" className="border border-border rounded-lg px-6 py-2 mb-3 bg-white dark:bg-slate-800">
+                <AccordionTrigger className="hover:text-secondary transition-colors">
+                  Como é feito o acompanhamento contínuo?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  O acompanhamento pode ser feito via reuniões agendadas (mensais, quinzenais ou conforme necessário), análise de relatórios financeiros, orientação em decisões importantes e suporte para dúvidas pontuais. Você fica tranquilo sabendo que tem um profissional para consultar quando precisar.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-6" className="border border-border rounded-lg px-6 py-2 mb-3 bg-white dark:bg-slate-800">
+                <AccordionTrigger className="hover:text-secondary transition-colors">
+                  Posso fazer uma consultoria pontual?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  Sim! Oferecemos consultorias pontuais para temas específicos como precificação, estruturação de fluxo de caixa, abertura de MEI, análise de viabilidade, entre outros. Você escolhe o tipo de serviço que melhor atende sua necessidade no momento.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </motion.div>
         </div>
       </section>
 
