@@ -13,11 +13,69 @@ import {
   FileText,
   Calculator,
   Building2,
-  Headphones
+  Headphones,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { useState, useEffect, createElement } from "react";
+import { useCounter } from "@/hooks/useCounter";
 
 export default function Home() {
+  const [currentBenefitIndex, setCurrentBenefitIndex] = useState(0);
+  const [isInView, setIsInView] = useState(false);
+  
+  // Contadores animados
+  const clientsCount = useCounter(500, 2000, isInView);
+  const projectsCount = useCounter(200, 2000, isInView);
+  const yearsCount = useCounter(3, 2000, isInView);
+
+  // Dados dos benefícios/vantagens
+  const benefits = [
+    {
+      icon: Target,
+      title: "Direcionamento Estratégico",
+      description: "Análise rápida da realidade do negócio para indicar caminhos eficientes de organização e crescimento."
+    },
+    {
+      icon: BarChart3,
+      title: "Decisões com Números",
+      description: "Transformo dados em informações práticas para corrigir falhas e dar segurança na tomada de decisão."
+    },
+    {
+      icon: CheckCircle2,
+      title: "Processos Simples",
+      description: "Aplicação de processos claros e organizados, evitando retrabalho e erros, mesmo sem conhecimento técnico."
+    },
+    {
+      icon: TrendingUp,
+      title: "Base para Crescimento",
+      description: "Estruturação financeira para crescer de forma sustentável, com visão de futuro e tranquilidade na gestão."
+    }
+  ];
+
+  // UseEffect para detectar quando a seção é visível
+  useEffect(() => {
+    const handleScroll = () => {
+      const experienciaSection = document.getElementById('experiencia');
+      if (experienciaSection) {
+        const rect = experienciaSection.getBoundingClientRect();
+        setIsInView(rect.top < window.innerHeight);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const nextBenefit = () => {
+    setCurrentBenefitIndex((prev) => (prev + 1) % benefits.length);
+  };
+
+  const prevBenefit = () => {
+    setCurrentBenefitIndex((prev) => (prev - 1 + benefits.length) % benefits.length);
+  };
+
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
@@ -291,100 +349,140 @@ export default function Home() {
       {/* Serviços Section */}
       <section id="servicos" className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto mb-16 space-y-4"
+          >
             <h2 className="text-3xl md:text-4xl font-display font-bold text-primary">
               Serviços
             </h2>
             <p className="text-muted-foreground text-lg">
               Soluções financeiras pensadas para quem precisa de organização, segurança e crescimento.
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
             {/* Serviço 1 - Abertura de MEI */}
-            <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-              <CardHeader>
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                  <FileText className="w-6 h-6 text-primary" />
-                </div>
-                <CardTitle className="text-lg font-display font-bold text-primary">
-                  Abertura de MEI
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-muted-foreground text-sm">
-                <p>
-                  Auxílio completo na abertura do MEI, regularização e orientação inicial para começar da forma correta.
-                </p>
-              </CardContent>
-            </Card>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0 }}
+              viewport={{ once: true }}
+            >
+              <Card className="border-none shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 h-full">
+                <CardHeader>
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                    <FileText className="w-6 h-6 text-primary" />
+                  </div>
+                  <CardTitle className="text-lg font-display font-bold text-primary">
+                    Abertura de MEI
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="text-muted-foreground text-sm">
+                  <p>
+                    Auxílio completo na abertura do MEI, regularização e orientação inicial para começar da forma correta.
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
 
             {/* Serviço 2 - Emissão de Nota Fiscal */}
-            <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-              <CardHeader>
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                  <Calculator className="w-6 h-6 text-primary" />
-                </div>
-                <CardTitle className="text-lg font-display font-bold text-primary">
-                  Emissão de Nota Fiscal
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-muted-foreground text-sm">
-                <p>
-                  Suporte na emissão de NF, orientação sobre plataformas, tipos de nota e organização fiscal.
-                </p>
-              </CardContent>
-            </Card>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+            >
+              <Card className="border-none shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 h-full">
+                <CardHeader>
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                    <Calculator className="w-6 h-6 text-primary" />
+                  </div>
+                  <CardTitle className="text-lg font-display font-bold text-primary">
+                    Emissão de Nota Fiscal
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="text-muted-foreground text-sm">
+                  <p>
+                    Suporte na emissão de NF, orientação sobre plataformas, tipos de nota e organização fiscal.
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
 
             {/* Serviço 3 - Precificação */}
-            <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-              <CardHeader>
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                  <BarChart3 className="w-6 h-6 text-primary" />
-                </div>
-                <CardTitle className="text-lg font-display font-bold text-primary">
-                  Precificação
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-muted-foreground text-sm">
-                <p>
-                  Cálculo correto de preços considerando custos, margem de lucro e posicionamento de mercado.
-                </p>
-              </CardContent>
-            </Card>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <Card className="border-none shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 h-full">
+                <CardHeader>
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                    <BarChart3 className="w-6 h-6 text-primary" />
+                  </div>
+                  <CardTitle className="text-lg font-display font-bold text-primary">
+                    Precificação
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="text-muted-foreground text-sm">
+                  <p>
+                    Cálculo correto de preços considerando custos, margem de lucro e posicionamento de mercado.
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
 
             {/* Serviço 4 - Estruturação Financeira */}
-            <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-              <CardHeader>
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                  <Building2 className="w-6 h-6 text-primary" />
-                </div>
-                <CardTitle className="text-lg font-display font-bold text-primary">
-                  Estruturação Financeira
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-muted-foreground text-sm">
-                <p>
-                  Organização do financeiro do zero: fluxo de caixa, controle de despesas, receitas e processos.
-                </p>
-              </CardContent>
-            </Card>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              viewport={{ once: true }}
+            >
+              <Card className="border-none shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 h-full">
+                <CardHeader>
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                    <Building2 className="w-6 h-6 text-primary" />
+                  </div>
+                  <CardTitle className="text-lg font-display font-bold text-primary">
+                    Estruturação Financeira
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="text-muted-foreground text-sm">
+                  <p>
+                    Organização do financeiro do zero: fluxo de caixa, controle de despesas, receitas e processos.
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
 
             {/* Serviço 5 - Consultoria Contínua */}
-            <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-              <CardHeader>
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                  <Headphones className="w-6 h-6 text-primary" />
-                </div>
-                <CardTitle className="text-lg font-display font-bold text-primary">
-                  Consultoria Contínua
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-muted-foreground text-sm">
-                <p>
-                  Acompanhamento estratégico para tomada de decisão, análise de resultados e crescimento sustentável.
-                </p>
-              </CardContent>
-            </Card>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              <Card className="border-none shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 h-full">
+                <CardHeader>
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                    <Headphones className="w-6 h-6 text-primary" />
+                  </div>
+                  <CardTitle className="text-lg font-display font-bold text-primary">
+                    Consultoria Contínua
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="text-muted-foreground text-sm">
+                  <p>
+                    Acompanhamento estratégico para tomada de decisão, análise de resultados e crescimento sustentável.
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -404,46 +502,105 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/10 hover:bg-white/15 transition-colors">
-              <div className="w-12 h-12 bg-secondary/20 rounded-lg flex items-center justify-center mb-4">
-                <Target className="w-6 h-6 text-secondary" />
+          {/* Carousel/Tabs Version */}
+          <div className="max-w-3xl mx-auto mb-12">
+            <motion.div
+              key={currentBenefitIndex}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.4 }}
+              className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20 hover:bg-white/15 transition-all duration-300"
+            >
+              <div className="flex flex-col md:flex-row items-center gap-6">
+                <div className="flex-shrink-0">
+                  <div className="w-16 h-16 bg-secondary/20 rounded-xl flex items-center justify-center">
+                    {createElement(benefits[currentBenefitIndex].icon, { 
+                      className: "w-8 h-8 text-secondary" 
+                    })}
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-bold text-xl mb-3">{benefits[currentBenefitIndex].title}</h3>
+                  <p className="text-sm text-primary-foreground/80 leading-relaxed">
+                    {benefits[currentBenefitIndex].description}
+                  </p>
+                </div>
               </div>
-              <h3 className="font-bold text-lg mb-3">Direcionamento Estratégico</h3>
-              <p className="text-sm text-primary-foreground/70 leading-relaxed">
-                Análise rápida da realidade do negócio para indicar caminhos eficientes de organização e crescimento.
-              </p>
-            </div>
+            </motion.div>
 
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/10 hover:bg-white/15 transition-colors">
-              <div className="w-12 h-12 bg-secondary/20 rounded-lg flex items-center justify-center mb-4">
-                <BarChart3 className="w-6 h-6 text-secondary" />
-              </div>
-              <h3 className="font-bold text-lg mb-3">Decisões com Números</h3>
-              <p className="text-sm text-primary-foreground/70 leading-relaxed">
-                Transformo dados em informações práticas para corrigir falhas e dar segurança na tomada de decisão.
-              </p>
-            </div>
+            {/* Navigation Dots and Arrows */}
+            <div className="flex items-center justify-between mt-8">
+              <button
+                onClick={prevBenefit}
+                className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                aria-label="Benefício anterior"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
 
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/10 hover:bg-white/15 transition-colors">
-              <div className="w-12 h-12 bg-secondary/20 rounded-lg flex items-center justify-center mb-4">
-                <CheckCircle2 className="w-6 h-6 text-secondary" />
+              <div className="flex gap-2">
+                {benefits.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentBenefitIndex(index)}
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      index === currentBenefitIndex
+                        ? 'bg-secondary w-8'
+                        : 'bg-white/30 w-2 hover:bg-white/50'
+                    }`}
+                    aria-label={`Ir para benefício ${index + 1}`}
+                  />
+                ))}
               </div>
-              <h3 className="font-bold text-lg mb-3">Processos Simples</h3>
-              <p className="text-sm text-primary-foreground/70 leading-relaxed">
-                Aplicação de processos claros e organizados, evitando retrabalho e erros, mesmo sem conhecimento técnico.
-              </p>
-            </div>
 
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/10 hover:bg-white/15 transition-colors">
-              <div className="w-12 h-12 bg-secondary/20 rounded-lg flex items-center justify-center mb-4">
-                <TrendingUp className="w-6 h-6 text-secondary" />
-              </div>
-              <h3 className="font-bold text-lg mb-3">Base para Crescimento</h3>
-              <p className="text-sm text-primary-foreground/70 leading-relaxed">
-                Estruturação financeira para crescer de forma sustentável, com visão de futuro e tranquilidade na gestão.
-              </p>
+              <button
+                onClick={nextBenefit}
+                className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                aria-label="Próximo benefício"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
             </div>
+          </div>
+
+          {/* Stats Section */}
+          <div className="grid grid-cols-3 gap-4 md:gap-8 mt-16 pt-12 border-t border-white/20">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-center"
+            >
+              <div className="text-4xl md:text-5xl font-display font-bold text-secondary mb-2">
+                +{clientsCount}
+              </div>
+              <p className="text-sm text-primary-foreground/80">Empresas Assessoradas</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-center"
+            >
+              <div className="text-4xl md:text-5xl font-display font-bold text-secondary mb-2">
+                +{projectsCount}
+              </div>
+              <p className="text-sm text-primary-foreground/80">Processos Otimizados</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-center"
+            >
+              <div className="text-4xl md:text-5xl font-display font-bold text-secondary mb-2">
+                {yearsCount}+
+              </div>
+              <p className="text-sm text-primary-foreground/80">Anos de Experiência</p>
+            </motion.div>
           </div>
 
           <div className="mt-16 text-center">
@@ -460,14 +617,19 @@ export default function Home() {
       {/* Por que contratar uma consultoria financeira */}
       <section className="py-20 bg-white dark:bg-slate-900">
         <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto mb-16 space-y-4"
+          >
             <h2 className="text-3xl md:text-4xl font-display font-bold text-primary">
               Por que contratar uma consultoria financeira?
             </h2>
             <p className="text-muted-foreground text-lg">
               Transforme a forma como você gerencia seu negócio e conquiste resultados reais.
             </p>
-          </div>
+          </motion.div>
 
           <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
@@ -482,10 +644,17 @@ export default function Home() {
               "Visão estratégica para expansão e planejamento financeiro",
               "Apoio profissional contínuo para decisões mais seguras"
             ].map((benefit, index) => (
-              <div key={index} className="flex items-start gap-3 p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                viewport={{ once: true }}
+                className="flex items-start gap-3 p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-all duration-300 hover:border-secondary/50 border border-transparent"
+              >
                 <CheckCircle2 className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
                 <span className="text-muted-foreground font-medium">{benefit}</span>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -494,7 +663,12 @@ export default function Home() {
       {/* CTA / Contato Section */}
       <section id="contato" className="py-20 bg-white dark:bg-slate-900">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto bg-muted/30 rounded-3xl p-8 md:p-12 border border-border text-center space-y-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-4xl mx-auto bg-muted/30 rounded-3xl p-8 md:p-12 border border-border text-center space-y-8 hover:border-secondary/50 hover:shadow-lg transition-all duration-300"
+          >
             <h2 className="text-3xl md:text-4xl font-display font-bold text-primary">
               Pronto para organizar suas finanças?
             </h2>
@@ -502,10 +676,15 @@ export default function Home() {
               Não deixe para depois o controle que seu negócio precisa hoje. Entre em contato e vamos conversar sobre como posso ajudar sua empresa a crescer de forma sustentável.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center pt-4"
+            >
               <Button
                 size="lg"
-                className="bg-green-600 hover:bg-green-700 text-white gap-2 h-14 px-8 text-lg rounded-full"
+                className="bg-green-600 hover:bg-green-700 text-white gap-2 h-14 px-8 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
                 onClick={() => window.open('https://api.whatsapp.com/send?phone=5583988880292', '_blank')}
               >
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="css-i6dzq1"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
@@ -514,14 +693,14 @@ export default function Home() {
               <Button
                 variant="outline"
                 size="lg"
-                className="gap-2 h-14 px-8 text-lg rounded-full"
+                className="gap-2 h-14 px-8 text-lg rounded-full hover:border-secondary/50 transition-all duration-300"
                 onClick={() => window.open('https://mail.google.com/mail/?view=cm&fs=1&to=ejdirecionamentofinanceiro@gmail.com', '_blank')}
               >
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="css-i6dzq1"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                 Enviar E-mail
               </Button>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
     </Layout>
