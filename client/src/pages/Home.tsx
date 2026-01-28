@@ -32,8 +32,8 @@ export default function Home() {
   const [isInView, setIsInView] = useState(false);
   
   // Contadores animados
-  const clientsCount = useCounter(500, 2000, isInView);
-  const projectsCount = useCounter(200, 2000, isInView);
+  const clientsCount = useCounter(5, 2000, isInView);
+  const projectsCount = useCounter(20, 2000, isInView);
   const yearsCount = useCounter(3, 2000, isInView);
 
   // Dados dos benefícios/vantagens
